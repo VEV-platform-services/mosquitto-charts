@@ -4,7 +4,7 @@ metadata:
   name: {{.Values.name}}-config
 data:
   mosquitto.conf : |
-    listener 9001
+    listener 8080
     protocol websockets
     persistence true
     persistence_location /mosquitto/data/

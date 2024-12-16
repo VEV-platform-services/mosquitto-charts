@@ -27,4 +27,4 @@ spec:
               service:
                 name: {{ .Chart.Name }}
                 port:
-                  number: 9001
+                  number: 8080
