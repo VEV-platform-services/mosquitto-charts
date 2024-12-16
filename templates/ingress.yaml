@@ -18,10 +18,10 @@ metadata:
     alb.ingress.kubernetes.io/group.order: '80'
 spec:
   rules:
-    - host: {{ .Values.ingress.host }}
+    - host: {{ .Values.ingress.host }}/mqtt
       http:
         paths:
-          - path: /mqtt
+          - path: /
             pathType: ImplementationSpecific
             backend:
               service:
