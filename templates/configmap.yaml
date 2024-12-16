@@ -4,6 +4,7 @@ metadata:
   name: {{.Values.name}}-config
 data:
   mosquitto.conf : |
+    listener 1883
     listener 8080
     protocol websockets
     persistence true
