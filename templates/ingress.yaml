@@ -4,7 +4,7 @@ metadata:
   name: {{ .Chart.Name }}
   namespace: emobility
   labels:
-    {{- include "labels" . | nindent 4 }}
+    app: {{.Values.name}}
   annotations:
     alb.ingress.kubernetes.io/group.name: emobility
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
