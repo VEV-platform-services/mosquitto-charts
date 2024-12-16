@@ -1,1 +1,2 @@
-host: dev-vev-iq.com
+ingress:
+  host: dev-vev-iq.com
