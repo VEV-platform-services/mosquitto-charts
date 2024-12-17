@@ -28,6 +28,13 @@ spec:
     - host: {{ .Values.ingress.host }}
       http:
         paths:
+          - path: /mqtt/health
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: {{ $.Chart.Name }}
+                port:
+                  number: 80
           - path: /mqtt*
             pathType: ImplementationSpecific
             backend:
@@ -35,3 +42,4 @@ spec:
                 name: {{ $.Chart.Name }}
                 port:
                   number: 8080
+
