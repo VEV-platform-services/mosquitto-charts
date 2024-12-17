@@ -37,6 +37,11 @@ spec:
             - name: mosquitto-config
               mountPath: /mosquitto/config/mosquitto.conf
               subPath: mosquitto.conf
+        - name: health-check-sidecar
+          image: python:3.9-slim
+          command: [ "python3", "-m", "http.server", "8080" ]
+          ports:
+            - containerPort: 8080
       volumes:
         - name: {{.Values.name}}-persistent-storage
           persistentVolumeClaim:
