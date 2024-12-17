@@ -39,19 +39,12 @@ spec:
               subPath: mosquitto.conf
         - name: health-check-sidecar
           image: python:3.9-slim
-          command: [ "python3", "-c", "from http.server import BaseHTTPRequestHandler, HTTPServer; \
-class Handler(BaseHTTPRequestHandler): \
-    def do_GET(self): \
-        if self.path == '/health': \
-            self.send_response(200); \
-            self.end_headers(); \
-            self.wfile.write(b'OK'); \
-        else: \
-            self.send_response(404); \
-            self.end_headers(); \
-httpd = HTTPServer(('0.0.0.0',80), Handler); httpd.serve_forever()" ]
+          command: ["python", "/config/sidecar.py"]
           ports:
             - containerPort: 80
+          volumeMounts:
+            - name: mosquitto-config
+              mountPath: /config
       volumes:
         - name: {{.Values.name}}-persistent-storage
           persistentVolumeClaim:
@@ -59,4 +52,3 @@ httpd = HTTPServer(('0.0.0.0',80), Handler); httpd.serve_forever()" ]
         - name: {{.Values.name}}-config
           configMap:
             name: {{.Values.name}}-config
-
