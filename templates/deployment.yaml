@@ -21,6 +21,16 @@ spec:
           ports:
             - containerPort: 1883
             - containerPort: 8080
+          livenessProbe:
+            tcpSocket:
+              port: 1883
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            tcpSocket:
+              port: 1883
+            initialDelaySeconds: 5
+            periodSeconds: 10
           volumeMounts:
             - name: mosquitto-persistent-storage
               mountPath: /mosquitto/data
@@ -34,3 +44,4 @@ spec:
         - name: {{.Values.name}}-config
           configMap:
             name: {{.Values.name}}-config
+
